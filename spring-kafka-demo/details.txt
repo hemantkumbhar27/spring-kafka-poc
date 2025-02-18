@@ -1,0 +1,60 @@
+https://kafka.apache.org/downloads
+
+Step 1: Download Apache Kafka
+Go to the Apache Kafka Download Page.
+Download the latest binary version for your operating system (e.g., Kafka 3.5.0).
+Extract the downloaded archive to a directory (e.g., C:\kafka on Windows or ~/kafka on Linux/Mac).
+Step 2: Start Zookeeper
+Why Zookeeper? Kafka uses Zookeeper to manage the brokers and maintain leader election.
+
+Open a terminal or command prompt.
+Navigate to the Kafka installation directory.
+
+
+cd /path/to/kafka
+Start Zookeeper using the provided script:
+On Linux/Mac: bin/zookeeper-server-start.sh config/zookeeper.properties
+On Windows: .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Step 3: Start Kafka Server
+Once Zookeeper is running, open a new terminal or command prompt:
+
+Navigate to the Kafka directory.
+Start the Kafka broker:
+On Linux/Mac:bin/kafka-server-start.sh config/server.properties
+On Windows:.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+Step 4: Create a Topic
+To create a Kafka topic named example-topic, run the following command in another terminal or command prompt:
+
+On Linux/Mac: bin/kafka-topics.sh --create --topic example-topic --bootstrap-server localhost:9092
+On Windows:.\bin\windows\kafka-topics.bat --create --topic example-topic --bootstrap-server localhost:9092
+
+Step 5: Verify the Setup (Optional)
+You can list all available topics by running:
+
+On Linux/Mac:bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+On Windows:.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+To describe the details of a specific topic (e.g., example-topic), use this command:
+.\bin\windows\kafka-topics.bat --describe --topic example-topic --bootstrap-server localhost:9092
+
+Check Running Kafka Brokers (Optional)
+To see the list of brokers connected to your Kafka cluster, you can use:
+
+.\bin\windows\zookeeper-shell.bat localhost:2181
+
+Once inside the Zookeeper shell, type the following command to list all broker IDs:
+ls /brokers/ids
+
+Step 6: Run Your Spring Boot Application
+Ensure Kafka and Zookeeper are running.
+Start your Spring Boot application.
+
+Send a message by accessing this URL in your browser:
+
+http://localhost:8080/send?message=HelloKafka
+You should see the message consumed by your application in the console (intellij).
+
+
